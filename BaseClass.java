@@ -62,10 +62,8 @@ public class BaseClass {
    }
     
     @Parameters({"browser","url"})
-
-     @Test
-
-	  public void beforeTest(String browser,String url) {
+	
+	public void beforeTest(String browser,String url) {
 
 	  if(browser.equalsIgnoreCase("chrome")) {
 	  driver = new ChromeDriver();	  
