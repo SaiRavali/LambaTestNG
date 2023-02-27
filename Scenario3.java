@@ -5,18 +5,12 @@ import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-	public class Scenario3 extends BaseClass {
+	public class Scenario3 extends BaseClass {	
 
-		
+     public void alert() throws InterruptedException  {
 
-    @Test 
-    
-  
-    	 public void alert()  {
-
-            	//driver.findElement(By.linkText("Javascript Alerts")).click();
-
-    	    driver.findElement(By.xpath("//a[text()='Javascript Alerts']")).click();
+            	driver.findElement(By.linkText("Javascript Alerts")).click();
+    	   
     	    	driver.findElement(By.xpath("//button[text()='Click Me']")).click();
 
     			Alert alert = driver.switchTo().alert();
