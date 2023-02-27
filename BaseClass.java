@@ -20,6 +20,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -33,13 +34,27 @@ public class BaseClass {
     public String gridURL = "@hub.lambdatest.com/wd/hub";
     boolean status = false;
    
+    @Parameters({"browser","url"}) 
     
     @BeforeMethod
+    
+    public void beforeTest(String browser,String url) {
+
+	  if(browser.equalsIgnoreCase("chrome")) {
+	  driver = new ChromeDriver();	  
+   }
+	  else if (browser.equalsIgnoreCase("safari")) { 
+   driver = new SafariDriver();
+	  } else if (browser.equalsIgnoreCase("lambdachrome")) {
+   } 
+   driver.get("https://www.lambdatest.com/selenium-playground/."); 
+   driver.manage().window().maximize();
+    }
     public void setUp() throws Exception {
        DesiredCapabilities capabilities = new DesiredCapabilities();
        ChromeOptions browserOptions = new ChromeOptions();
        capabilities.setCapability("browserName", "chrome");
-       browserOptions.setPlatformName("MacOS Monterey");
+       browserOptions.setPlatformName("Windows 10");
        browserOptions.setBrowserVersion("110.0");
        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
        ltOptions.put("username", "sairavali.g");
@@ -59,24 +74,8 @@ public class BaseClass {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-   }
-    
-    @Parameters({"browser","url"})
-	
-	public void beforeTest(String browser,String url) {
-
-	  if(browser.equalsIgnoreCase("chrome")) {
-	  driver = new ChromeDriver();	  
+   
     }
-	  else if (browser.equalsIgnoreCase("safari")) { 
-    driver = new SafariDriver();
-    } 
-    driver.get("https://www.lambdatest.com/selenium-playground/."); 
-   WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-   //wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    
-    }
-
 	
     @AfterClass
     public void tearDown() throws Exception {
@@ -93,6 +92,13 @@ public class BaseClass {
 
 
 
+
+
+
+
+
+
+    
 
 
 
