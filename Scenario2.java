@@ -1,5 +1,7 @@
 package scenarios;
 	
+	package scenarios;
+	
 	import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -13,8 +15,9 @@ import org.testng.annotations.Test;
     
     public void checkboxDemo()  {
 
-    	driver.findElement(By.xpath("//a[text()='Checkbox Demo']")).click();
-    	//driver.findElement(By.linkText("Checkbox Demo")).click();
+    	
+    	driver.findElement(By.linkText("Checkbox Demo")).click();
+        
     	WebElement checkBoxSelected = driver.findElement(By.id("isAgeSelected"));
     	boolean isSelected = checkBoxSelected.isSelected();
 
